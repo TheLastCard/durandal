@@ -259,6 +259,10 @@ module.exports = function (grunt) {
                 files: ['<%= paths.css %>/*.css'],
                 tasks: ['newer:copy:styles', 'autoprefixer:watch']
             },
+            scss: {
+                files: ['<%= paths.sass %>/*.scss'],
+                tasks: ['newer:copy:styles', 'autoprefixer:watch']
+            },
 
             livereload: {
                 options: {

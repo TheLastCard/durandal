@@ -4,5 +4,5 @@
 
 
 .messageBox{
-    @include callout();
+    @include foundation-reveal();
 }
