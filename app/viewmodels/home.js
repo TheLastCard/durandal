@@ -1,9 +1,10 @@
-define(["knockout", "durandal/app", "durandal/system"], function (ko, app, system) {
+define(["knockout", "durandal/app", "durandal/system", "plugins/http" ], function (ko, app, system, http) {
     var
         // Public Properties
-        todos = ko.observableArray(),
+        products = ko.observableArray(),
         selectedTodo = ko.observable(),
         isLoading = ko.observable(false),
+        productsUrl = "http://durandal-api.kyberutv.no/api/Values",
 
         // Private Properties
         messageTitle = "Application Message",
@@ -22,8 +23,8 @@ define(["knockout", "durandal/app", "durandal/system"], function (ko, app, syste
         activate = function activate() {
             isLoading(true);
 
-            return loadTodos().then(function (loadedTodos) {
-                todos(loadedTodos);
+            return loadProducts().then(function (loadedProducts) {
+                products(loadedProducts);
                 isLoading(false);
             });
         },
@@ -33,29 +34,16 @@ define(["knockout", "durandal/app", "durandal/system"], function (ko, app, syste
         },
 
         // Private Methods
-        loadTodos = function () {
-            return system.defer(function (dfd) {
-                setTimeout(function () {
-                    dfd.resolve([
-                        {
-                            title: "Create your first ViewModel",
-                            content: "To create a ViewModel using yeoman you could call <strong>$ yo durandal:viewmodel.</strong>"
-                        },
-                        {
-                            title: "Test your first ViewModel",
-                            content: "To create Spec for your ViewModel using yeoman you could call <strong>$ yo durandal:viewmodeltest.</strong>"
-                        },
-                        {
-                            title: "Create View for your ViewModel",
-                            content: "To create a View using yeoman you could call <strong>$ yo durandal:view.</strong>"
-                        }
-                    ]);
-                }, 1500);
+        loadProducts = function () {
+            console.log("loading products");
+            return http.get(productsUrl).then(function (response) {
+                console.log("response ->", response);
+                return response;
             });
         };
 
     return {
-        todos: todos,
+        products: products,
         selectedTodo: selectedTodo,
         isLoading: isLoading,
 

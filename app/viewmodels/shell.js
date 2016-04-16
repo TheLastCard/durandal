@@ -2,16 +2,18 @@ define(['plugins/router', "durandal/app"], function (router, app) {
     return {
         router: router,
 
-        search: function() {
+        search: function () {
             app.showMessage("Not Implemented", "Error");
         },
 
         activate: function () {
             router.map([
-                { route: '', moduleId: 'viewmodels/home', title: "Home", nav: true }
+                { route: '', moduleId: 'viewmodels/home', title: "Home", nav: true },
+                { route: "products", moduleId: "viewmodels/products", title: "Products", nav: true },
+                { route: "product/:id", moduleId: "viewmodels/product" }
                 /*{durandal:routes}*/
             ]).buildNavigationModel();
-            
+
             return router.activate();
         }
     };
