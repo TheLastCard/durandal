@@ -1,0 +1,36 @@
+<header role="navigation" class="container">
+    <div class="top-bar">
+        <div class="row">
+            <div class="small-12 columns">
+                <div class="top-bar-left">
+                    <ul class="menu" data-bind="foreach: router.navigationModel">
+                        <li class="menu-text">Durandal Webshop</li>
+                        <li><a data-bind="attr: { href: hash }, text: title"></a></li>
+                    </ul>
+                </div>
+                <div class="top-bar-right">
+                    <ul class="menu">
+                        <li><input type="search" placeholder="Search"></li>
+                        <li><button type="button" class="button" data-bind="click: search">Search</button></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+<div class="router-loader" data-bind="visible: router.isNavigating">
+    <i class="fa fa-spinner fa-2x fa-spin active"></i>
+</div>
+
+<section id="main" class="container" data-bind="router: { transition:'entrance', cacheViews:true }"></section>
+
+<footer class="container">
+    <div class="row">
+        <div class="small-12 columns">
+            This is your footer
+        </div>
+    </div>
+</footer>

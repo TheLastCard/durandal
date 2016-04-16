@@ -1,0 +1,52 @@
+
+<div class="row">
+    <div class="small-12 columns">
+        <h1>
+            Home
+            <small>Durandal Webshop</small>
+        </h1>
+    </div>
+    <div class="small-12 columns">
+        <h3>This page helps to start using this generator</h3>
+        <p>Select a todo into the above list to show its details</p>
+    </div>
+</div>
+
+
+<article class="row">
+    <div class="columns medium-5">
+        <div class="list-group" data-bind="foreach: todos">
+            <a class="list-group-item"
+               data-bind="text: title, click: $root.selectedTodo, css: { active: $root.selectedTodo() == $data }"></a>
+        </div>
+    </div>
+    <div class="columns medium-7">
+        <div class="panel panel-default">
+            <!--ko with: selectedTodo-->
+            <div class="panel-heading">
+                <h3 class="panel-title" data-bind="text: title"></h3>
+            </div>
+            <div class="panel-body">
+                <p data-bind="html: content"></p>
+                <p>
+                    <button class="btn btn-primary" data-bind="click: $root.onTodoClick">View more</button>
+                </p>
+            </div>
+            <!--/ko-->
+            <!--ko ifnot: selectedTodo-->
+            <div class="callout">
+                <h3 class="panel-title">No Todo Selected</h3>
+                <p class="panel-body">Select a todo in the list to show details</p>
+            </div>
+            <!--/ko-->
+        </div>
+    </div>
+
+    <div class="small-12 columns">
+        <button class="button primary" data-bind="click: onButtonClick">
+            Hello
+        </button>
+    </div>
+</article>
+
+
