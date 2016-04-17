@@ -1,6 +1,14 @@
-<section id="page-product" class="page">
-    <div class="page-header">
-        <h1>product</h1>
+<section id="page-product" class="row">
+    <div class="small-12 columns">
+        <h1 data-bind="text: product().Name"></h1>
+        <p data-bind="text: product().Description"></p>
+        <p data-bind="text: product().Price + ',-'"></p>
+        <div class="row">
+            <div class="small-12 large-3 medium-2 columns end">
+                <label for="amount">Amount</label>
+                <input type="number" id="amount" name="amount" data-bind="value: amount"/>
+            </div>
+        </div>
+        <button class="button primary" data-bind="click: buyProduct">Buy</button>
     </div>
-    <p>Your content here</p>
 </section>

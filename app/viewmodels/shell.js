@@ -10,7 +10,7 @@ define(['plugins/router', "durandal/app"], function (router, app) {
             router.map([
                 { route: '', moduleId: 'viewmodels/home', title: "Home", nav: true },
                 { route: "products", moduleId: "viewmodels/products", title: "Products", nav: true },
-                { route: "product/:id", moduleId: "viewmodels/product" }
+                { route: "products/:id", moduleId: "viewmodels/product"}
                 /*{durandal:routes}*/
             ]).buildNavigationModel();
 

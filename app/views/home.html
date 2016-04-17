@@ -1,14 +1,15 @@
 
 <div class="row column text-center">
+    <br />
     <h2>Our Newest Products</h2>
     <hr>
 </div>
 <div class="row small-up-2 large-up-4" data-bind="foreach: products">
     <div class="column">
         <img class="thumbnail" src="http://placehold.it/300x400">
-        <h5 data-bind="text: $data"></h5>
-        <p>$400</p>
-        <a href="#" class="button expanded">Buy</a>
+        <h5 data-bind="text: $data.Name"></h5>
+        <p data-bind="text: $data.Price + ',-'"></p>
+        <a data-bind="attr: {href: '#/products/'+$data.Id}" class="button expanded">Buy</a>
     </div>
 </div>
 <hr>

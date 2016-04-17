@@ -2,18 +2,12 @@ define(["knockout", "durandal/app", "durandal/system", "plugins/http" ], functio
     var
         // Public Properties
         products = ko.observableArray(),
-        selectedTodo = ko.observable(),
         isLoading = ko.observable(false),
-        productsUrl = "http://durandal-api.kyberutv.no/api/Values",
+        productsUrl = "http://durandal-api.kyberutv.no/api/Products",
 
         // Private Properties
         messageTitle = "Application Message",
         message = "Hello from your application",
-
-        // Event Handlers
-        onTodoClick = function onTodoClick(note) {
-            app.showMessage(note.content, note.title);
-        },
 
         onButtonClick = function onButtonClick() {
             app.showMessage(message, messageTitle);
@@ -23,31 +17,26 @@ define(["knockout", "durandal/app", "durandal/system", "plugins/http" ], functio
         activate = function activate() {
             isLoading(true);
 
-            return loadProducts().then(function (loadedProducts) {
+            loadProducts().then(function (loadedProducts) {
                 products(loadedProducts);
                 isLoading(false);
             });
         },
 
         deactivate = function deactivate() {
-            selectedTodo(null);
         },
 
         // Private Methods
         loadProducts = function () {
-            console.log("loading products");
             return http.get(productsUrl).then(function (response) {
-                console.log("response ->", response);
                 return response;
             });
         };
 
     return {
         products: products,
-        selectedTodo: selectedTodo,
         isLoading: isLoading,
 
-        onTodoClick: onTodoClick,
         onButtonClick: onButtonClick,
 
         activate: activate,
