@@ -19,7 +19,8 @@ module.exports = function (grunt) {
             assets: 'assets',
             build: '.build',
             temp: '.temp',
-            test: 'test/spec'
+            test: 'test/spec',
+            sass: 'sass'
         },
 
         // Build durandal application into a single file
@@ -74,14 +75,13 @@ module.exports = function (grunt) {
         },
 
         sass: {
+            options: {
+                sourceMap: true
+            },
             dist: {
-                files: [{
-                    expand: true,
-                    cwd: 'styles',
-                    src: ['../sass/main.scss'],
-                    dest: '../css',
-                    ext: '.css'
-                }]
+                files: {
+                    'main.css': 'main.scss'
+                }
             }
         },
 
@@ -256,11 +256,7 @@ module.exports = function (grunt) {
             },
 
             styles: {
-                files: ['<%= paths.css %>/*.css'],
-                tasks: ['newer:copy:styles', 'autoprefixer:watch']
-            },
-            scss: {
-                files: ['<%= paths.sass %>/*.scss'],
+                files: ['<%= paths.css %>/*.css', '<%= paths.sass %>/*.scss'],
                 tasks: ['newer:copy:styles', 'autoprefixer:watch']
             },
 
@@ -343,12 +339,11 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.loadNpmTasks('grunt-contrib-sass');
 
     grunt.registerTask('test', ['clean:server', 'copy:styles', 'autoprefixer:watch', 'connect:test', 'mocha']);
     grunt.registerTask('build', ['clean:release', 'concurrent:release', 'concat', 'autoprefixer:release', 'htmlbuild', 'htmlmin']);
     grunt.registerTask('default', ['newer:jshint', 'test', 'build']);
 
-    grunt.registerTask('serve', ['clean:server', 'concurrent:server', 'autoprefixer:watch', 'connect:livereload', 'sass', 'watch']);
+    grunt.registerTask('serve', ['clean:server', 'concurrent:server', 'autoprefixer:watch', 'connect:livereload', 'watch']);
     grunt.registerTask('serve-build', ['build', 'connect:release:keepalive']);
 };

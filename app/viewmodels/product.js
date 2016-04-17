@@ -1,11 +1,12 @@
-define(["jquery", "knockout", "durandal/app", "durandal/system", "plugins/router", "plugins/http"], function ($, ko, app, system, router, http) {
+define(['jquery', 'knockout', 'durandal/app', 'durandal/system', 'plugins/router', 'plugins/http', 'constants'], function ($, ko, app, system, router, http, constants) {
     var
         // Properties
         isLoading = ko.observable(false),
         product = ko.observable(null),
         amount = ko.observable(0),
-        productUrl = "http://durandal-api.kyberutv.no/api/Products/",
-        addToBasketUrl = "http://durandal-api.kyberutv.no/api/Basket/AddProduct",
+        errorAmount = ko.observable(null),
+        productUrl = constants.baseUrl + 'Products/',
+        addToBasketUrl = constants.baseUrl + 'Basket/PostProductToBasket/{id}/{amount}',
         // Handlers
 
         // Lifecycle
@@ -13,7 +14,8 @@ define(["jquery", "knockout", "durandal/app", "durandal/system", "plugins/router
         activate = function (id) {
             isLoading(true);
 
-            loadProduct(id).then(function (loadedProduct) {
+            return loadProduct(id).then(function (loadedProduct) {
+                console.log('Product retrieved ', loadedProduct);
                 product(loadedProduct);
                 isLoading(false);
             });
@@ -30,14 +32,23 @@ define(["jquery", "knockout", "durandal/app", "durandal/system", "plugins/router
 
         buyProduct = function () {
             isLoading(true);
+
+            if (amount() < 1 || amount() > product().StorageAmount) {
+                errorAmount('Invalid amount!');
+                return;
+            }
+            errorAmount(null);
+
             addToBasket().then(function (response) {
-                console.log("buyProduct response -> ", response);
+                console.log('addToBasket response -> ', response);
                 isLoading(false);
             });
         },
 
         addToBasket = function () {
-            return http.post(addToBasketUrl, { Id: product().Id, Amount: amount() }).then(function (response) {
+            var url = addToBasketUrl.replace('{id}', product().Id).replace('{amount}', parseInt(amount()));
+            console.log(url);
+            return http.post(url).then(function (response) {
                 return response;
             });
         };
@@ -45,6 +56,7 @@ define(["jquery", "knockout", "durandal/app", "durandal/system", "plugins/router
     return {
         // Place your public properties here
         product: product,
+        errorAmount: errorAmount,
         amount: amount,
         buyProduct: buyProduct,
         isLoading: isLoading,

@@ -1,7 +1,7 @@
 ﻿
 
 @import "../bower_components/foundation-sites/scss/foundation.scss";
-
+@import "base.scss";
 
 .messageBox{
     @include foundation-reveal();

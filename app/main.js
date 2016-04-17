@@ -6,7 +6,7 @@ requirejs.config({
         'transitions': '../bower_components/durandal/js/transitions',
         'knockout': '../bower_components/knockout.js/knockout.debug',
         'jquery': '../bower_components/jquery/dist/jquery',
-        'modernizr': '../bower_components/modernizr/modernizr',
+        'modernizr': '../bower_components/modernizr/modernizr'
     },
     shim: {
     
@@ -17,11 +17,11 @@ requirejs.config({
 });
 
 define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'plugins/dialog'], function (system, app, viewLocator, dialog) {
-    //>>excludeStart("build", true);
+    //>>excludeStart('build', true);
     system.debug(true);
-    //>>excludeEnd("build");
+    //>>excludeEnd('build');
 
-    app.title = "Durandal Webshop";
+    app.title = 'Durandal Webshop';
 
     app.configurePlugins({
         router:true,
@@ -29,13 +29,13 @@ define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'plugins/dial
         widget: true
     });
 
-    app.start().then(function() {
+    app.start().then(function () {
         // Replace 'viewmodels' in the moduleId with 'views' to locate the view.
         // Look for partial views in a 'views' folder in the root.
         viewLocator.useConvention();
 
         //Set messagebox defaults
-        dialog.MessageBox.setDefaults({ buttonClass: "button", primaryButtonClass: "primary", secondaryButtonClass: "secondary" });
+        dialog.MessageBox.setDefaults({ buttonClass: 'button', primaryButtonClass: 'primary', secondaryButtonClass: 'secondary' });
 
         // Show the app by setting the root view model for our application with a transition.
         app.setRoot('viewmodels/shell');

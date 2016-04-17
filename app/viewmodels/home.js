@@ -1,13 +1,13 @@
-define(["knockout", "durandal/app", "durandal/system", "plugins/http" ], function (ko, app, system, http) {
+define(['knockout', 'durandal/app', 'durandal/system', 'plugins/http', 'constants'], function (ko, app, system, http, constants) {
     var
         // Public Properties
         products = ko.observableArray(),
         isLoading = ko.observable(false),
-        productsUrl = "http://durandal-api.kyberutv.no/api/Products",
+        productsUrl = constants.baseUrl + 'Products',
 
         // Private Properties
-        messageTitle = "Application Message",
-        message = "Hello from your application",
+        messageTitle = 'Application Message',
+        message = 'Hello from your application',
 
         onButtonClick = function onButtonClick() {
             app.showMessage(message, messageTitle);
@@ -17,7 +17,8 @@ define(["knockout", "durandal/app", "durandal/system", "plugins/http" ], functio
         activate = function activate() {
             isLoading(true);
 
-            loadProducts().then(function (loadedProducts) {
+            return loadProducts().then(function (loadedProducts) {
+                console.log('Products retrieved ', loadedProducts);
                 products(loadedProducts);
                 isLoading(false);
             });
