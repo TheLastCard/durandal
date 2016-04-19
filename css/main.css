@@ -8,6 +8,9 @@
   color: red;
   vertical-align: super; }
 
+.error {
+  color: red; }
+
 .messageBox body.is-reveal-open {
   overflow: hidden; }
 .messageBox .reveal-overlay {

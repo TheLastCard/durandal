@@ -75,12 +75,9 @@ module.exports = function (grunt) {
         },
 
         sass: {
-            options: {
-                sourceMap: true
-            },
             dist: {
                 files: {
-                    'main.css': 'main.scss'
+                    'css/main.css': 'sass/main.scss'
                 }
             }
         },
@@ -339,11 +336,13 @@ module.exports = function (grunt) {
         }
     });
 
+    grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-contrib-watch');
 
     grunt.registerTask('test', ['clean:server', 'copy:styles', 'autoprefixer:watch', 'connect:test', 'mocha']);
     grunt.registerTask('build', ['clean:release', 'concurrent:release', 'concat', 'autoprefixer:release', 'htmlbuild', 'htmlmin']);
     grunt.registerTask('default', ['newer:jshint', 'test', 'build']);
 
-    grunt.registerTask('serve', ['clean:server', 'concurrent:server', 'autoprefixer:watch', 'connect:livereload', 'watch']);
+    grunt.registerTask('serve', ['clean:server', 'concurrent:server', 'autoprefixer:watch', 'connect:livereload', 'sass', 'watch']);
     grunt.registerTask('serve-build', ['build', 'connect:release:keepalive']);
 };
