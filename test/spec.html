@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <script src="../bower_components/jasmine-core/lib/jasmine-core/jasmine.js"></script>
+    <script src="../bower_components/jasmine-core/lib/jasmine-core/jasmine-html.js"></script>
+    <script src="../bower_components/jasmine-core/lib/jasmine-core/boot.js"></script>
+    <script src="jasmine.console_reporter.js"></script>
+
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../bower_components/knockout.js/knockout.js"></script>
+    <script src="../bower_components/json2/json2.js" type="text/javascript"></script>
+    <script src="../bower_components/requirejs/require.js" data-main="app/main"></script>
+    <script type="text/javascript">
+        require.config({
+            baseUrl: '../src/',
+            paths: {
+                'specs': '../test/specs/',
+                'text': '../bower_components/requirejs-text/text',
+                'durandal': '../bower_components/durandal/js',
+                'plugins': '../bower_components/durandal/js/plugins',
+                'transitions': '../bower_components/durandal/js/transitions',
+                'knockout': '../bower_components/knockout.js/knockout.debug',
+                'jquery': '../bower_components/jquery/dist/jquery',
+                'modernizr': '../bower_components/modernizr/modernizr',
+                'Q': '../node_modules/q/q',
+                'app': '../app',
+                'constants': '../app/constants',
+                'auth': '../app/auth',
+                'main': '../app/main',
+                'viewmodels': '../app/viewmodels'
+            }
+        });
+        var runTests = function (specfiles) {
+            require(specfiles, function () {
+                var consoleReporter = new jasmineReporters.ConsoleReporter();
+                jasmine.getEnv().addReporter(consoleReporter);
+                jasmine.getEnv().execute();
+            });
+        };
+    </script>
+</head>
+<body>
+</body>
+</html>

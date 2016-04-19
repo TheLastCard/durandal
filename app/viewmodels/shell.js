@@ -1,4 +1,4 @@
-define(['knockout', 'plugins/router', 'durandal/app', 'plugins/http', 'auth', 'constants'], function (ko, router, app, http, auth, constants) {
+define(['knockout', 'plugins/router', 'durandal/app', 'plugins/http', 'auth', 'constants', 'Q'], function (ko, router, app, http, auth, constants, Q) {
     var
         basket = ko.observableArray(),
         isLoading = ko.observable(false),

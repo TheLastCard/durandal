@@ -3,7 +3,9 @@
   "description": "Durandal Webshop Application",
   "author": "Walter K. Dahl",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "q": "^1.4.1"
+  },
   "devDependencies": {
     "grunt": ">=0.4.0",
     "grunt-autoprefixer": ">=0.6.0",
