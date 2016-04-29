@@ -1,0 +1,15 @@
+
+<section class="row">
+    <div class="small-12 columns">
+        <ul class="tabs" data-tabs id="example-tabs">
+
+            <!-- ko foreach: router.navigationModel -->
+            <li class="tabs-title" data-bind="css: { 'is-active': isActive }">
+                <a data-bind="attr: { href: hash }, text: title"></a>
+            </li>
+            <!-- /ko -->
+        </ul>
+    </div>
+</section>
+
+<section id="admin" class="container" data-bind="router: { transition:'entrance', cacheViews:true }"></section>

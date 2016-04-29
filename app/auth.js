@@ -1,6 +1,8 @@
-﻿define(['knockout'], function (ko) {
+﻿'use strict';
+
+define(['knockout'], function (ko) {
     var
-        loggedIn = ko.observable(false),
+        loggedIn = ko.observable(true),
         activate = function () {
         };
 

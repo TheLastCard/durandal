@@ -1,37 +1,34 @@
-define(['knockout', 'durandal/app', 'durandal/system', 'plugins/http', 'constants'], function (ko, app, system, http, constants) {
+'use strict';
+
+define(['knockout', 'durandal/app', 'productsFactory'], function (ko, app, productsFactory) {
     var
         // Public Properties
         products = ko.observableArray(),
         isLoading = ko.observable(false),
-        productsUrl = constants.baseUrl + 'Products',
+        
 
         // Private Properties
         messageTitle = 'Application Message',
         message = 'Hello from your application',
 
-        onButtonClick = function onButtonClick() {
+        onButtonClick = function() {
             app.showMessage(message, messageTitle);
         },
 
+        // Private Methods
+
         // Lifecycle Methods
-        activate = function activate() {
+        activate = function() {
             isLoading(true);
 
-            return loadProducts().then(function (loadedProducts) {
+            return productsFactory.loadProducts().then(function (loadedProducts) {
                 console.log('Products retrieved ', loadedProducts);
                 products(loadedProducts);
                 isLoading(false);
             });
         },
 
-        deactivate = function deactivate() {
-        },
-
-        // Private Methods
-        loadProducts = function () {
-            return http.get(productsUrl).then(function (response) {
-                return response;
-            });
+        deactivate = function() {
         };
 
     return {

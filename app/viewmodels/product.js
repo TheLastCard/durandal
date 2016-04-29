@@ -1,3 +1,5 @@
+'use strict';
+
 define(['jquery', 'knockout', 'durandal/app', 'durandal/system', 'plugins/router', 'plugins/http', 'constants'], function ($, ko, app, system, router, http, constants) {
     var
         // Properties
@@ -8,6 +10,20 @@ define(['jquery', 'knockout', 'durandal/app', 'durandal/system', 'plugins/router
         productUrl = constants.baseUrl + 'Products/',
         addToBasketUrl = constants.baseUrl + 'Basket/PostProductToBasket/{id}/{amount}',
         // Handlers
+
+        loadProduct = function (id) {
+            return http.get(productUrl + id).then(function (response) {
+                return response;
+            });
+        },
+
+        addToBasket = function () {
+            var url = addToBasketUrl.replace('{id}', product().Id).replace('{amount}', parseInt(amount()));
+            console.log(url);
+            return http.post(url).then(function (response) {
+                return response;
+            });
+        },
 
         // Lifecycle
 
@@ -24,12 +40,6 @@ define(['jquery', 'knockout', 'durandal/app', 'durandal/system', 'plugins/router
         deactivate = function () {
         },
 
-        loadProduct = function (id) {
-            return http.get(productUrl + id).then(function (response) {
-                return response;
-            });
-        },
-
         buyProduct = function () {
             isLoading(true);
 
@@ -42,14 +52,6 @@ define(['jquery', 'knockout', 'durandal/app', 'durandal/system', 'plugins/router
             addToBasket().then(function (response) {
                 console.log('addToBasket response -> ', response);
                 isLoading(false);
-            });
-        },
-
-        addToBasket = function () {
-            var url = addToBasketUrl.replace('{id}', product().Id).replace('{amount}', parseInt(amount()));
-            console.log(url);
-            return http.post(url).then(function (response) {
-                return response;
             });
         };
 

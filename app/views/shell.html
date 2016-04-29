@@ -3,11 +3,13 @@
         <div class="row">
             <div class="small-12 columns">
                 <div class="top-bar-left">
+
                     <ul class="menu">
                         <!-- ko foreach: router.navigationModel -->
-                        <li data-bind="if : ($parent.loggedIn() && title !== 'Login') || (title === 'Home')"><a data-bind="attr: { href: hash }, text: title"></a></li>
+                        <li data-bind="if : !$data.navHide"><a data-bind="attr: { href: hash }, text: title"></a></li>
                         <!-- /ko -->
                     </ul>
+
                 </div>
                 <div class="top-bar-right">
                     <ul class="menu">

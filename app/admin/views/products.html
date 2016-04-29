@@ -1,0 +1,24 @@
+﻿<section class="row">
+    <div class="small-12 columns">
+        <h1 data-bind="text : heading"></h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- ko foreach: products -->
+                <tr>
+                    <td data-bind="text: $data.Name"></td>
+                    <td><a data-bind="attr: { href: '#admin/products/' + $data.Id + '/edit' }">Edit</a></td>
+                </tr>
+                <!-- /ko -->
+
+            </tbody>
+        </table>
+
+    </div>
+</section>

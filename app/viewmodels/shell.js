@@ -1,9 +1,18 @@
-define(['knockout', 'plugins/router', 'durandal/app', 'plugins/http', 'auth', 'constants', 'Q'], function (ko, router, app, http, auth, constants, Q) {
+'use strict';
+
+define(['knockout', 'plugins/router', 'durandal/app', 'plugins/http', 'auth', 'constants'], function (ko, router, app, http, auth, constants) {
     var
         basket = ko.observableArray(),
         isLoading = ko.observable(false),
         basketUrl = constants.baseUrl + 'Basket',
         loggedIn = ko.observable(false),
+
+        getBasket = function () {
+            return http.get(basketUrl).then(function (response) {
+                return response;
+            });
+        },
+
         activate = function () {
             isLoading(true);
             loggedIn = auth.loggedIn();
@@ -16,8 +25,9 @@ define(['knockout', 'plugins/router', 'durandal/app', 'plugins/http', 'auth', 'c
                 { route: '', moduleId: 'viewmodels/home', title: 'Home', nav: true },
                 { route: 'products', moduleId: 'viewmodels/products', title: 'Products', nav: true },
                 { route: 'products/:id', moduleId: 'viewmodels/product' },
-                { route: 'login', moduleId: 'viewmodels/login', title: 'Login', nav: true },
-                { route: 'register', moduleId: 'viewmodels/register', title: 'Register', nav: true }
+                { route: 'login', moduleId: 'viewmodels/login', title: 'Login', nav: true, navHide: true },
+                { route: 'register', moduleId: 'viewmodels/register', title: 'Register', nav: true, navHide: true },
+                { route: 'admin*interfaces', moduleId: 'admin/viewmodels/index', title: 'Admin Home', nav: true, hash: '#admin' }
                 /*{durandal:routes}*/
             ]).buildNavigationModel();
 
@@ -32,12 +42,6 @@ define(['knockout', 'plugins/router', 'durandal/app', 'plugins/http', 'auth', 'c
 
         search = function () {
             app.showMessage('Not Implemented', 'Error');
-        },
-
-        getBasket = function () {
-            return http.get(basketUrl).then(function (response) {
-                return response;
-            });
         };
 
     return {
@@ -47,6 +51,5 @@ define(['knockout', 'plugins/router', 'durandal/app', 'plugins/http', 'auth', 'c
         activate: activate,
         search: search,
         loggedIn: loggedIn
-
     };
 });

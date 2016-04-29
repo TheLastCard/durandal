@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "durandal", ".", "{A2497BDB-5586-4860-9DF5-FC53D5D92CDB}"
 	ProjectSection(WebsiteProperties) = preProject
@@ -24,13 +24,22 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "durandal", ".", "{A2497BDB-
 		SlnRelativePath = "..\durandal\"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Durandal-API", "..\durandal-API\Durandal-API\Durandal-API.csproj", "{672BD16D-7027-4346-B63F-8476E881B0F4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{A2497BDB-5586-4860-9DF5-FC53D5D92CDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A2497BDB-5586-4860-9DF5-FC53D5D92CDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2497BDB-5586-4860-9DF5-FC53D5D92CDB}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2497BDB-5586-4860-9DF5-FC53D5D92CDB}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{672BD16D-7027-4346-B63F-8476E881B0F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{672BD16D-7027-4346-B63F-8476E881B0F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{672BD16D-7027-4346-B63F-8476E881B0F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{672BD16D-7027-4346-B63F-8476E881B0F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

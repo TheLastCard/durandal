@@ -1,3 +1,5 @@
+'use strict';
+
 requirejs.config({
     paths: {
         'text': '../bower_components/requirejs-text/text',

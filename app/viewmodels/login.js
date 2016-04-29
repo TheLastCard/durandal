@@ -1,4 +1,6 @@
-define(["jquery", "knockout", "durandal/app", "durandal/system", "plugins/router"], function ($, ko, app, system, router) {
+'use strict';
+
+define(['jquery', 'knockout', 'durandal/app', 'durandal/system', 'plugins/router'], function ($, ko, app, system, router) {
     var
         // Properties
 
@@ -13,7 +15,7 @@ define(["jquery", "knockout", "durandal/app", "durandal/system", "plugins/router
         },
 
         login = function () {
-            console.log("TODO: Add form serialization and send to server");
+            console.log('TODO: Add form serialization and send to server');
         };
 
     return {
