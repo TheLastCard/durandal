@@ -7,7 +7,7 @@ define(['knockout', 'plugins/router', 'durandal/app', 'plugins/http', 'auth', 'c
             fromParent: true
         }).map([
             { route: 'products', moduleId: 'viewmodels/products', title: 'Admin Products', nav: true },
-            { route: 'products/:id', moduleId: 'viewmodels/product', title: 'Admin Product', nav: true }
+            { route: 'products/:id/edit', moduleId: 'viewmodels/editProduct', title: 'Admin Product' }
         ]).buildNavigationModel();
 
     return {

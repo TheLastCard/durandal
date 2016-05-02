@@ -10,7 +10,6 @@ define(['knockout', 'plugins/router', 'durandal/app', 'productsFactory'], functi
             isLoading(true);
 
             return productsFactory.loadProducts().then(function (loadedProducts) {
-                console.log('Products retrieved ', loadedProducts);
                 products(loadedProducts);
                 isLoading(false);
             });

@@ -13,12 +13,13 @@
                 <!-- ko foreach: products -->
                 <tr>
                     <td data-bind="text: $data.Name"></td>
-                    <td><a data-bind="attr: { href: '#admin/products/' + $data.Id + '/edit' }">Edit</a></td>
+                    <td class="float-right"><a data-bind="attr: { href: '#admin/products/' + $data.Id + '/edit' }">Edit</a></td>
                 </tr>
                 <!-- /ko -->
 
             </tbody>
         </table>
 
+        <a class="button" data-bind="attr: { href: '#admin/products/add' }">Create new product</a>
     </div>
 </section>
