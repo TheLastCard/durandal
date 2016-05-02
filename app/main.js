@@ -6,15 +6,20 @@ requirejs.config({
         'durandal': '../bower_components/durandal/js',
         'plugins': '../bower_components/durandal/js/plugins',
         'transitions': '../bower_components/durandal/js/transitions',
-        'knockout': '../bower_components/knockout.js/knockout.debug',
+        'knockout': '../bower_components/knockout/dist/knockout.debug',
+        'komapping': '../bower_components/bower-knockout-mapping/dist/knockout.mapping',
         'jquery': '../bower_components/jquery/dist/jquery',
         'modernizr': '../bower_components/modernizr/modernizr',
         'Q': '../node_modules/q/q'
     },
     shim: {
-    
-    modernizr: {
+
+        modernizr: {
             exports: 'Modernizr'
+        },
+        komapping: {
+            deps: ['knockout'],
+            exports: 'komapping'
         }
     }
 });
@@ -37,7 +42,7 @@ define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'plugins/dial
     app.title = 'Durandal Webshop';
 
     app.configurePlugins({
-        router:true,
+        router: true,
         dialog: true,
         widget: true
     });

@@ -3,7 +3,7 @@
 define(['knockout', 'plugins/router', 'durandal/app', 'productsFactory'], function (ko, router, app, productsFactory) {
     var
         products = ko.observableArray(),
-        heading = 'Admin Products',
+        heading = 'Products',
         isLoading = ko.observable(false),
 
         activate = function () {

@@ -27,7 +27,7 @@ define(['knockout', 'plugins/router', 'durandal/app', 'plugins/http', 'auth', 'c
                 { route: 'products/:id', moduleId: 'viewmodels/product' },
                 { route: 'login', moduleId: 'viewmodels/login', title: 'Login', nav: true, navHide: true },
                 { route: 'register', moduleId: 'viewmodels/register', title: 'Register', nav: true, navHide: true },
-                { route: 'admin*interfaces', moduleId: 'admin/viewmodels/index', title: 'Admin Home', nav: true, hash: '#admin' }
+                { route: 'admin*interfaces', moduleId: 'admin/viewmodels/index', title: 'Admin', nav: true, hash: '#admin' }
                 /*{durandal:routes}*/
             ]).buildNavigationModel();
 

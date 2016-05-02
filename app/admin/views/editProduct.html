@@ -1,22 +1,22 @@
 ﻿<section class="row">
     <form class="small-12 medium-8 medium-offset-2 large-6 large-offset-3 columns end">
+        <h1 data-bind="text: product.Name">Edit Product</h1>
         <fieldset>
-
             <label for="Name">
                 Name
-                <input type="text" name="Name" id="Name" data-bind="value: product().Name" required/>
+                <input type="text" name="Name" id="Name" data-bind="value: product.Name" required/>
             </label>
 
             <label for="Description">
                 Description
-                <textarea name="Description" id="Description" data-bind="value: product().Description" required rows="5"></textarea>
+                <textarea name="Description" id="Description" data-bind="value: product.Description" required rows="5"></textarea>
             </label>
 
             <div class="row">
                 <div class="small-12 medium-6 columns">
                     <label for="Price">Price</label>
                     <div class="input-group">
-                        <input class="input-group-field" type="number" name="Price" id="Price" data-bind="value: product().Price"  required/>
+                        <input class="input-group-field" type="number" name="Price" id="Price" data-bind="value: product.Price"  required/>
                         <label class="input-group-label">NOK</label>
                     </div>
 
@@ -24,14 +24,17 @@
                 <div class="small-12 medium-6 columns">
                     <label for="StorageAmount">
                         StorageAmount
-                        <input type="number" name="StorageAmount" id="StorageAmount" data-bind="value: product().StorageAmount" required/>
+                        <input type="number" name="StorageAmount" id="StorageAmount" data-bind="value: product.StorageAmount" required/>
                     </label>
                 </div>
             </div>
 
             <label for="Category">
                 Category
-                <select name="Category" id="Category" data-bind="options: categories, optionsText: function(item) {return item.Name}, value: product().Category, optionsCaption: 'Choose...'" required>
+                <select name="Category"
+                        id="Category" 
+                        data-bind="options: categories, optionsText: function(item) {return item.Name}, optionsValue: function(item) {return item.Id}, value: product.Category.Id, optionsCaption: 'Choose...'"
+                        required>
                 </select>
             </label>
 

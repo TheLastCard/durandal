@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-define(['plugins/http', 'constants'], function (http, constants) {
+define(['knockout', 'komapping', 'plugins/http', 'constants'], function (ko, komapping, http, constants) {
     var
         productsUrl = constants.baseUrl + 'Products',
         productUrl = constants.baseUrl + 'Products/{id}',
@@ -16,11 +16,29 @@ define(['plugins/http', 'constants'], function (http, constants) {
                 });
             }
             throw 'id is not defined';
-        }
+        },
+        updateProduct = function (id, product) {
+
+            if (id && product) {
+                return http.put(productUrl.replace('{id}', id), product ).then(function (response) {
+                    return response;
+                });
+            }
+            throw 'id or product is not defined';
+        },
+        productModel = function (data) {
+            komapping.fromJS(data, {}, this);
+            console.log(data);
+            this.Category = {};
+            this.Category.Id = data.Category ? ko.observable(data.Category.Id) : ko.observable(null);
+            return this;
+        };
 
     return {
         loadProducts: loadProducts,
-        loadProduct: loadProduct
+        loadProduct: loadProduct,
+        updateProduct: updateProduct,
+        productModel: productModel
     };
 });
 

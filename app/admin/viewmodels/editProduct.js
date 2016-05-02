@@ -1,11 +1,10 @@
 ﻿'use strict';
 
-define(['knockout', 'plugins/router', 'durandal/app', 'productsFactory', 'categoriesFactory', 'Q'], function (ko, router, app, productsFactory, categoriesFactory, Q) {
+define(['knockout', 'komapping', 'plugins/router', 'durandal/app', 'productsFactory', 'categoriesFactory', 'Q'], function (ko, komapping, router, app, productsFactory, categoriesFactory, Q) {
     var
         isLoading = ko.observable(false),
         categories = ko.observable([]),
-        product = ko.observable(''),
-        test = 'test',
+        product = ko.observable(null),
 
         activate = function (id) {
             isLoading(true);
@@ -20,15 +19,19 @@ define(['knockout', 'plugins/router', 'durandal/app', 'productsFactory', 'catego
 
             return Q.all(promises).then((values) => {
                 isLoading(false);
-                product(values[0]);
-                categories(values[1]);
+                this.product = new productsFactory.productModel(values[0]);
+                this.categories = komapping.fromJS(values[1]);
                 return true;
             });
         },
         submitChanges = function () {
-            console.log('submitChanges');
+            isLoading(true);
+            var updatedProduct = ko.mapping.toJS(this.product);
+            productsFactory.updateProduct(updatedProduct.Id, updatedProduct).then(function (response) {
+                console.log(response);
+                isLoading(false);
+            });
         };
-
 
     return {
         activate: activate,
